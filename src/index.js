@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 let app = (
     <div id="main">
-        <App name="Matt" age ="25"/>
-        <App name="Mdb" age ="15"/>
-        <App name="matt" age ="35"/>
+        <App name="Matt" age ="25" day="13"/>
+        <App name="Mdb" age ="15" day="14"/>
+        <App name="matt" age ="35" day="18"/>
     </div>
 );
 
