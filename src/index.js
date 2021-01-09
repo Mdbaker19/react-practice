@@ -1,22 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-let app = (
-    <div id="main">
-        <App name="Matt" age ="25" day="13"/>
-        <App name="Mdb" age ="15" day="14"/>
-        <App name="matt" age ="35" day="18"/>
-    </div>
-);
-
-
-
 ReactDOM.render(
   <React.StrictMode>
-        {app}
+        <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
