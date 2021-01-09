@@ -4,9 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let app = (
+    <div id="main">
+        <App name="Matt" age ="25"/>
+        <App name="Mdb" age ="15"/>
+        <App name="matt" age ="35"/>
+    </div>
+);
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        {app}
   </React.StrictMode>,
   document.getElementById('root')
 );
