@@ -12,7 +12,8 @@
     flex-wrap: wrap;
 }
 .personCard{
-    box-shadow: 0 2px 2px #000;
+    box-shadow: -6px 10px 2px #3a3838;
+    border: 1px solid black;
     margin: 100px;
     width: 300px;
     height: 300px;
