@@ -8,7 +8,7 @@ const person = (props) => {
             <p>My age is {props.age}</p>
             {/*children refers to the html in between the tags, empty tag if no info passed in tags*/}
             <p>My hobbies are: {props.children}</p>
-            <input type="text" onChange={props.changed}/>
+            <input type="text" onChange={props.changed} value={props.name}/>
         </div>
     )
 }
