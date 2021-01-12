@@ -10,7 +10,8 @@ class App extends Component {
             { name: 'man', age: 22, bday: 1 },
             { name: 'nemo', age: 2, bday: 3 },
         ],
-        otherState: "set people value for the set people called in name handlers"
+        otherState: "set people value for the set people called in name handlers",
+        showPersons: true
     };
 
     // when this is called, otherState is basically removed, needs to be added as this just overwrites people (the persons array)
@@ -37,26 +38,83 @@ class App extends Component {
         })
     }
 
+    // not in use but can add it to the click event of the persons
+    deletePersonHandler = (personIndex) => {
+        const persons = this.state.persons;
+        persons.splice(personIndex, 1);
+        this.setState({persons: persons});
+    }
+
+    togglePersons = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({showPersons: !doesShow});
+    }
+
     render ()
     {
+
+        const customStyle = {
+            backgroundColor: "black",
+            border: "2px solid blue",
+            padding: "5px",
+            color: "white"
+        }
+
+        let persons = null;
+
+        //a state change will cause the render method to be called again
+        if(this.state.showPersons){
+            persons = (
+                <div>
+                    {this.state.persons.map((person, index) => {
+                        return <Person
+                            name={person.name}
+                            age={person.age}
+                            click={this.deletePersonHandler.bind(this, index)}>Default hobbies for now</Person>
+                            // click={this.changeNameHandler.bind(this, null, this.properNames[index])}>Default hobbies for now</Person>
+                    })}
+                    {/*<Person click={this.changeNameHandler.bind(this, null, "Matthew B!")}*/}
+                    {/*        day={this.state.persons[0].bday} name={this.state.persons[0].name}*/}
+                    {/*        age={this.state.persons[0].age}>coding, learning, cars, building and music</Person>*/}
+
+                    {/*<Person click={() => this.changeNameHandler(null, "Hue Man!")}*/}
+                    {/*        changed={this.nameChangeHandler}*/}
+                    {/*        day={this.state.persons[1].bday} name={this.state.persons[1].name}*/}
+                    {/*        age={this.state.persons[1].age}>being a human, a man and all things people</Person>*/}
+
+                    {/*<Person click={() => this.changeNameHandler(null, "Nemo Goat Snake!")}*/}
+                    {/*        day={this.state.persons[2].bday} name={this.state.persons[2].name}*/}
+                    {/*        age={this.state.persons[2].age}>play, speak, tricks and treats</Person>*/}
+                </div>
+            )
+        }
+
         // jsx syntax
         return (
             <div className="main">
                 <div id="buttonArea">
+                    <button
+                        style={customStyle}
+                        onClick={this.togglePersons}>Toggle cards</button>
                     <button onClick={() => this.changeNameHandler(this.properNames, null)}>Proper names</button>
                 </div>
-                <Person click={this.changeNameHandler.bind(this, null, "Matthew B!")}
-                        day={this.state.persons[0].bday} name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}>coding, learning, cars, building and music</Person>
+                {persons}
+                {/*{ this.state.showPersons ?*/}
+                {/*    <div>*/}
+                {/*        <Person click={this.changeNameHandler.bind(this, null, "Matthew B!")}*/}
+                {/*                day={this.state.persons[0].bday} name={this.state.persons[0].name}*/}
+                {/*                age={this.state.persons[0].age}>coding, learning, cars, building and music</Person>*/}
 
-                <Person click={() => this.changeNameHandler(null, "Hue Man!")}
-                        changed={this.nameChangeHandler}
-                        day={this.state.persons[1].bday} name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}>being a human, a man and all things people</Person>
+                {/*        <Person click={() => this.changeNameHandler(null, "Hue Man!")}*/}
+                {/*                changed={this.nameChangeHandler}*/}
+                {/*                day={this.state.persons[1].bday} name={this.state.persons[1].name}*/}
+                {/*                age={this.state.persons[1].age}>being a human, a man and all things people</Person>*/}
 
-                <Person click={() => this.changeNameHandler(null, "Nemo Goat Snake!")}
-                        day={this.state.persons[2].bday} name={this.state.persons[2].name}
-                        age={this.state.persons[2].age}>play, speak, tricks and treats</Person>
+                {/*        <Person click={() => this.changeNameHandler(null, "Nemo Goat Snake!")}*/}
+                {/*                day={this.state.persons[2].bday} name={this.state.persons[2].name}*/}
+                {/*                age={this.state.persons[2].age}>play, speak, tricks and treats</Person>*/}
+                {/*</div> /!*: null*/}
+                {/*}*!/*/}
 
             </div>
         );
